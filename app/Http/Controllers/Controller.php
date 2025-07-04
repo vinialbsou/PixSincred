@@ -59,7 +59,7 @@ class Controller extends BaseController
             $response['migrate'] = 'Erro';
         }
 
-        dd($response);
+        //dd($response);
     }
 
     public function updateOldRaffles()
@@ -76,7 +76,7 @@ class Controller extends BaseController
             $response['update-raffles'] = 'Erro';
         }
 
-        dd($response);
+        //dd($response);
     }
 
     public function formatMoney($value)

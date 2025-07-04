@@ -289,27 +289,27 @@
     <div class="container app-main" id="app-main">
 
         <div class="row justify-content-center">
-            <div class="col-md-6 col-12 rifas {{ $config->tema }}">
-                <div class="app-title {{ $config->tema }}">
+            <div class="col-md-6 col-12 rifas {{ $config->tema  ?? 'tema-padrao'}}">
+                <div class="app-title {{ $config->tema  ?? 'tema-padrao'}}">
                     <h1>⚡ Prêmios</h1>
-                    <div class="app-title-desc {{ $config->tema }}">Escolha sua sorte</div>
+                    <div class="app-title-desc {{ $config->tema  ?? 'tema-padrao'}}">Escolha sua sorte</div>
                 </div>
 
                 {{-- Rifa em destaque --}}
                 @foreach ($products->where('favoritar', '=', 1) as $product)
                     <a href="{{ route('product', ['slug' => $product->slug]) }}">
-                        <div class="card-rifa-destaque {{ $config->tema }}">
+                        <div class="card-rifa-destaque {{ $config->tema  ?? 'tema-padrao'}}">
                             <div class="img-rifa-destaque">
                                 <img src="/products/{{ $product->imagem()->name }}" alt="" srcset="">
                             </div>
-                            <div class="title-rifa-destaque {{ $config->tema }}">
+                            <div class="title-rifa-destaque {{ $config->tema  ?? 'tema-padrao'}}">
                                 <h1>{{ $product->name }}</h1>
                                 <p>{{ $product->subname }}</p>
                                 <div style="width: 100%;">
                                     {!! $product->status() !!}
                                     @if ($product->draw_date)
                                         <br>
-                                        <span class="data-sorteio {{ $config->tema }}" style="font-size: 12px;">
+                                        <span class="data-sorteio {{ $config->tema  ?? 'tema-padrao'}}" style="font-size: 12px;">
                                             Data do sorteio {{ date('d/m/Y', strtotime($product->draw_date)) }}
                                             {{-- {!! $product->dataSorteio() !!} --}}
                                         </span>
@@ -323,11 +323,11 @@
                 {{-- Outras Rifas --}}
                 @foreach ($products->where('favoritar', '=', 0) as $product)
                     <a href="{{ route('product', ['slug' => $product->slug]) }}">
-                        <div class="card-rifa {{ $config->tema }}">
+                        <div class="card-rifa {{ $config->tema  ?? 'tema-padrao'}}">
                             <div class="img-rifa">
                                 <img src="/products/{{ $product->imagem()->name }}" alt="" srcset="">
                             </div>
-                            <div class="title-rifa title-rifa-destaque {{ $config->tema }}">
+                            <div class="title-rifa title-rifa-destaque {{ $config->tema  ?? 'tema-padrao'}}">
 
 
                                 <h1>{{ $product->name }}</h1>
@@ -337,7 +337,7 @@
                                     {!! $product->status() !!}
                                     @if ($product->draw_date)
                                         <br>
-                                        <span class="data-sorteio {{ $config->tema }}" style="font-size: 12px;">
+                                        <span class="data-sorteio {{ $config->tema  ?? 'tema-padrao'}}" style="font-size: 12px;">
                                             Data do sorteio {{ date('d/m/Y', strtotime($product->draw_date)) }}
                                         </span>
                                     @endif
@@ -351,7 +351,7 @@
                 <div onclick="duvidas()" class="container d-flex duvida" style="">
                     <div class="row">
                         <div class="d-flex icone-duvidas">🤷</div>
-                        <div class="col text-duvidas {{ $config->tema }}">
+                        <div class="col text-duvidas {{ $config->tema  ?? 'tema-padrao'}}">
                             <h6 class="mb-0 font-md f-15">Dúvidas?</h6>
                             <p class="mb-0  font-sm f-12 text-muted">Fale conosco</p>
                         </div>
@@ -360,9 +360,9 @@
 
                 {{-- Ganhadores --}}
                 @if ($ganhadores->count() > 0)
-                    <div class="app-title {{ $config->tema }}">
+                    <div class="app-title {{ $config->tema  ?? 'tema-padrao'}}">
                         <h1>🎉 Ganhadores</h1>
-                        <div class="app-title-desc {{ $config->tema }}">sortudos</div>
+                        <div class="app-title-desc {{ $config->tema  ?? 'tema-padrao'}}">sortudos</div>
                     </div>
 
                     <style>
@@ -425,13 +425,13 @@
 
                         {{-- Ganhador manual (editar rifa) --}}
                         @foreach ($winners as $winner)
-                            <div class="ganhador {{ $config->tema }}"
+                            <div class="ganhador {{ $config->tema  ?? 'tema-padrao'}}"
                                 onclick="verRifa('{{ route('product', ['slug' => $winner->slug]) }}')">
                                 <div class="ganhador-foto">
                                     <img src="images/sem-foto.jpg" class="" alt="{{ $winner->name }}"
                                         style="min-height: 50px;max-height: 20px;border-radius:10px;">
                                 </div>
-                                <div class="ganhador-desc {{ $config->tema }}">
+                                <div class="ganhador-desc {{ $config->tema  ?? 'tema-padrao'}}">
                                     <h3>{{ $winner->winner }}</h3>
                                     <p>
                                         <strong>Sorteio: </strong>
@@ -445,7 +445,7 @@
                         @endforeach
 
                         @foreach ($ganhadores as $ganhador)
-                            <div class="ganhador {{ $config->tema }}"
+                            <div class="ganhador {{ $config->tema  ?? 'tema-padrao'}}"
                                 onclick="verRifa('{{ route('product', ['slug' => $ganhador->rifa()->slug]) }}')">
                                 <div class="ganhador-foto">
                                     @if ($ganhador->foto)
@@ -457,7 +457,7 @@
                                     @endif
 
                                 </div>
-                                <div class="ganhador-desc {{ $config->tema }}">
+                                <div class="ganhador-desc {{ $config->tema  ?? 'tema-padrao'}}">
                                     <h3>{{ $ganhador->ganhador }}</h3>
                                     <p>
                                         Ganhou <strong>{{ $ganhador->descricao }}</strong> cota <span
@@ -479,7 +479,7 @@
                 {{-- Perguntas ferquentes --}}
                 @if (!env('HIDE_FAQ'))
                     <div class="perguntas-frequentes pb-2">
-                        <div class="app-title {{ $config->tema }}">
+                        <div class="app-title {{ $config->tema  ?? 'tema-padrao'}}">
                             <h1>🤷 Perguntas frequentes</h1>
                         </div>
                         <div class="accordion" id="accordionExample">

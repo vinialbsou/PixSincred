@@ -467,7 +467,7 @@ class MySweepstakesController extends Controller
                 ]
             );
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            //dd($th->getMessage());
         }
 
         $rifa->ganho_afiliado = $request->ganho_afiliado;

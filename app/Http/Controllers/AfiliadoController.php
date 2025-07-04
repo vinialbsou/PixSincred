@@ -170,7 +170,7 @@ class AfiliadoController extends Controller
 
             return back()->with(['message' => 'Solicitação de saque realizada com sucesso!']);
         } catch (\Throwable $th) {
-            dd($th);
+            //dd($th);
             return back()->withErrors('Erro interno no sistema!');
         }
     }
