@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductWithSicrediController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('callback', 'ProductController@callbackPaymentMercadoPago')->name('callbackPaymentMercadoPago');
 Route::post('/notificacoesMP', 'ProductController@notificacoesMP')->name('api.notificaoMP');
 Route::post('/webhook-paggue', 'ProductController@notificacoesPaggue')->name('api.notificaoPaggue');
+
+Route::post('/callback/sicredi', [ProductWithSicrediController::class, 'callbackPaymentSicredi']);

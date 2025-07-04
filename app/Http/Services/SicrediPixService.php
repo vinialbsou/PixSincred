@@ -61,7 +61,7 @@ class SicrediPixService
     {
         $client = new Client();
 
-        $response = $client->post(config('sicredi.auth_sicredi'), [
+        $response = $client->post(config('sicredi.'), [
             'form_params' => [
                 'grant_type' => 'client_credentials',
                 'client_id' => $this->clientId,
