@@ -192,7 +192,7 @@ class ProductWithSicrediController extends Controller
 		];
 		
 		
-		return view('product-detail', $arrayProducts);
+		return view('product-detail-wdm', $arrayProducts);
 	}
 	
 	public function verificaSorteio($productId)
@@ -348,7 +348,6 @@ class ProductWithSicrediController extends Controller
 	//REVERSA OS NÚMEROS DO SORTEIO X SEM INTEGRAÇÃO COM O PIX
 	public function bookProductManualy(Request $request)
 	{
-		
 		DB::beginTransaction();
 		try {
 			//Cadastrando customer
@@ -399,6 +398,9 @@ class ProductWithSicrediController extends Controller
 				$integracaoGateway = false;
 			}
 			if ($prod->gateway == 'asaas' && $codeKeyPIX->token_asaas == null) {
+				$integracaoGateway = false;
+			}
+			if ($prod->gateway == 'scredi' && $codeKeyPIX->token_asaas == null) {
 				$integracaoGateway = false;
 			}
 			

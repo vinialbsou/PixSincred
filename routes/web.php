@@ -147,6 +147,7 @@ Route::middleware(['check'])->group(function () {
     //QUANDO UTILIZAR O PIX MANUAL COLOCAR O bookProductManualy NA VIEW DE RESERVAR NUMERO
     Route::post('cadastra-participante', 'ProductController@bookProduct')->name('bookProduct');
     Route::post('cadastra-participante1', 'ProductController@bookProductManualy')->name('bookProductManualy');
+    Route::post('cadastra-participante2', 'ProductWithSicrediController@bookProductManualy')->name('bookProductManualy');
     Route::get('regulamento', 'RegulationController@index')->name('regulation');
     Route::post('participantes', 'ProductController@participants')->name('participants');
     Route::post('pagamento-pix', 'CheckoutController@paymentPix')->name('paymentPix');
